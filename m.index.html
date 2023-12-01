@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 설명 / 제작자 / 날짜 / 키워드 -->
+  <!-- og -->
+  <!-- teitter card -->
+  <!-- favicon -->
   <link rel="stylesheet" href="./css/reset.css">
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> -->
   <title>할리스</title>
-
   <style>
     :root{
       --main-color:#b5121b;
@@ -39,10 +41,12 @@
     #skip-menu a:focus{
       transform:translateY(0);
     }
+    /* WRAP */
     #wrap{
       overflow:hidden;
       position:relative;
     }
+    /* HEADER */
     .header{
       position:relative;
       z-index:10;
@@ -111,9 +115,7 @@
       color:var(--sub-color07);
       text-align:center;
     }
-
-
-
+    /* POPUP */
     .popup{
       display:none;      
       position:fixed;
@@ -170,6 +172,7 @@
     .popup .container>button::after{
       transform:translate(-50%,-50%) rotate(-45deg);
     }
+    /* MAIN BANNER */
     .main-banner{
       position:relative;
       z-index:1;
@@ -177,8 +180,7 @@
     .main-banner h2,.q-nav h2,.banner h2{
       display:none;
     }
-   
-
+    /* QUICK NAV */
     .q-nav{
       padding:20px 0;
     }
@@ -202,14 +204,14 @@
       width:30px;
       height:45px;
     }
-
+    /* BANNER */
     .banner li{
       margin-bottom:5px;
     }
     .banner h3,.banner h3+p{
       display:none;
     }
-
+    /* NOTICE */
     .notice{
       padding:20px 0;
     }
@@ -253,6 +255,7 @@
       width:20%;
       text-align:right;
     }
+    /* FOOTER */
     .footer .row:nth-child(1){
       border:1px solid var(--sub-color05);
       border-left:none;
@@ -283,7 +286,6 @@
     .footer .row:nth-child(1) div:last-child{
       float:right;
     }
-
     .footer .row:nth-child(2){
       padding:10px;
       background:var(--sub-color06);
@@ -299,6 +301,7 @@
       font-size:0.6em;
     }
   </style>
+  <!-- 추가 스타일 -->
   <style>
     .slider{
       position:relative;
@@ -341,7 +344,6 @@
     <a href="#main-banner">이벤트 바로가기</a>
     <a href="#notice">게시판 바로가기</a>    
   </div>
-
   <section id="wrap">
     <header class="header">
       <div class="container clearfix">
@@ -544,47 +546,47 @@
   <script src="./js/jquery.min.js"></script>
   <script src="./js/jquery.cookie.min.js"></script>
   <script src="./js/myFunction.js"></script>
-  <script>  
-    
-    $('h1').click(function(){
-      let hrefVal = $(this).children('a').attr('href');      
-      fnLink(hrefVal);
-      // location.href='./m.index.html';
-    })
-    $('#btn-chk02,#btn-close').click(function(){
-      fnClose($('#popup'));
-    });
-    $('#btn-chk01').click(function(){
-      $.cookie('popup','no',{path:'/',expires:1});
-      fnClose($('#popup'));
-    });
-    $('.btn-nav').click(function(){
-      $('#nav').stop().slideToggle(300,callBack01);      
-    })
-    $('.main-nav').children('li').click(function(event){
-      event.preventDefault();
-      fnClose($('.sub-nav'));                 
-      $(this).children('.sub-nav').stop().slideDown();
-      $(this).children('a').css({
-        fontWeight:'700',
+  <script>
+    $(document).ready(function(){
+      myObj.key01();
+      myObj.key02();
+      myObj.key03();
+      $('h1').click(function(){
+        let hrefVal = $(this).children('a').attr('href');      
+        fnLink(hrefVal);
+        // location.href='./m.index.html';
       })
-    })
-    $(window).resize(function(){
-      fnSlider();
-    })
-    $('.pagenation span').click(function(){
-      resetActive($('.pagenation span'));
-      setActive($(this));
-      tlVal = $(this).text() * (-25);
-      $('.slider').css({
-        transform:`translateX(${tlVal}%)`,
+      $('#btn-chk02,#btn-close').click(function(){
+        fnClose($('#popup'));
       });
+      $('#btn-chk01').click(function(){
+        $.cookie('popup','no',{path:'/',expires:1});
+        fnClose($('#popup'));
+      });
+      $('.btn-nav').click(function(){
+        $('#nav').stop().slideToggle(300,callBack01);      
+      })
+      $('.main-nav').children('li').click(function(event){
+        event.preventDefault();
+        fnClose($('.sub-nav'));                 
+        $(this).children('.sub-nav').stop().slideDown();
+        $(this).children('a').css({
+          fontWeight:'700',
+        })
+      })
+      $(window).resize(function(){
+        fnSlider();
+      })
+      $('.pagenation span').click(function(){
+        resetActive($('.pagenation span'));
+        setActive($(this));
+        tlVal = $(this).text() * (-25);
+        $('.slider').css({
+          transform:`translateX(${tlVal}%)`,
+        });
+      })
+      myObj.key04();
     })
-    fnWrap();
-    fnSlider();
-    fnCookie();
-    sliderAuto();
-    
   </script>
 </body>
 </html>
