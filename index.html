@@ -5,14 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- 설명 / 제작자 / 날짜 / 키워드 -->
   <!-- og -->
-  <!-- teitter card -->
+  <!-- twitter card -->
   <!-- favicon -->
-  <link rel="shortcut icon" href="./images/logo.gif" type="image/x-icon">
-  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/reset.css">  
   <script src="./js/jquery.min.js"></script>
   <script src="./js/jquery.cookie.min.js"></script>
-  <title>할리스</title>
+  <title>Document</title>
   <style>
+    :root{
+      font-family:'맑은 고딕','돋움 보통',sans-serif;
+      font-weight:400;
+      font-size: 12px;
+      line-height: 19px;
+      color: #6f6f6f;
+    }
+    .container{
+      width:940px;
+      margin:0 auto;
+    }
     .f-left{float:left;}
     .f-right{float:right;}
     #skip-menu a{
@@ -24,18 +34,136 @@
       color:#fff;
       position:fixed;
       left:50%;
-      top:0%;
+      top:0;
       z-index:10000;
       transform:translate(-50%,-100%);
     }
     #skip-menu a:focus{
       transform:translate(-50%,0);
     }
+    .header{
+      border-bottom:2px solid #ba000c;
+      padding-top:20px 0 4px;
+      position:relative;
+      z-index:100;
+    }
+    .header .row:first-child{
+      margin-bottom:60px;
+    }
+    h1{
+      position:absolute;
+      left:50%;
+      top:20px;
+      transform:translateX(-50%);
+    }
+    h1>a{
+      display:none;
+    }
+    .gnb-smenu li:first-child{
+      margin-right:3em;
+    }
+    .util li{
+      margin-left:1.5em;
+    }
+    .nav li{
+      width:16.66666666666667%;
+      height:60px;
+      position:relative;
+    }
+    /* .nav li:hover{ */
+      /* background:#ba000c; */
+    /* } */
+    .nav li .img-box{
+      position:absolute;
+      left:50%;
+      top:16px;
+      transform:translateX(-50%);
+      height:19px;
+    }
+    .nav li .img-box img{
+      width:auto;
+      height:100%;
+    }
+    .nav li p{
+      position:absolute; 
+      left:0;
+      right:0;     
+      bottom:6px;
+      color:transparent;
+      text-align:center;
+      transition:0.2s 0.1s;
+    }
+    /* .nav li:hover p{ */
+      /* color:#fff; */
+    /* } */
+    .sub-nav{
+      display:none;
+      position:absolute;
+      left:0;
+      right:0;
+      top:100%;
+      padding:20px 0 60px;
+      background:#4f4f4f;
+    }
+    .sub-nav>ul{
+      width:940px;
+      margin:0 auto;
+    }
+    .sub-nav>ul>li{
+      float:left;
+      width:16.6667%;
+      font-size:1.05em;
+      color:#9f9f9f;
+      text-align:center;
+    }
+    .sub-nav li li{
+      margin-bottom:0.5em;
+    }
+    .sub-nav li li:hover{
+      color:#fff;
+    }
+    .main-banner .container{
+      width:100%;
+    }
   </style>
   <script>
     $(function(){
-  
+      $('.nav li').mouseenter(function(){
+        backColor($(this),'#ba000c');
+        changeImg($(this),'.png','-on.png');
+        setColor($('.nav li').children('p'),'#6f6f6f');        
+        setColor($(this).children('p'),'#ffffff');                
+        $('.sub-nav').slideDown(300);        
+      })
+
+      $('.nav li').mouseleave(function(){
+        backColor($(this),'transparent');
+        changeImg($(this),'-on.png','.png');
+        setColor($('.nav li').children('p'),'#6f6f6f');        
+      })
+
+      $('.sub-nav').mouseleave(function(){
+        $(this).slideUp(300);
+        setColor($('.nav p'),'transparent');        
+      })
     })
+
+    function backColor(self,color){
+      self.css({
+        background:color,
+      })
+    }
+
+    function changeImg(self,oldTxt,newTxt){
+      let newImg = self.find('img').attr('src').replace(oldTxt,newTxt);
+        self.find('img').attr('src',newImg);
+    }
+
+    function setColor(el,color){
+      el.css({
+        color:color,
+      })
+    }
   </script>
 </head>
 <body>
@@ -50,32 +178,107 @@
             <a href="./index.html">할리스</a>
             <div class="img-box"><a href="./index.html"><img src="./images/d-images/logo.gif" alt="hollys"></a></div>
           </h1>
-          <ul class="f-left gnb-smenu">
-            <li>
+          <ul class="f-left gnb-smenu clearfix">
+            <li class="f-left">
               <div class="img-box"><a href="#"><img src="./images/d-images/gnb-smenu01.gif" alt="창업설명회"></a></div>
             </li>
-            <li>
+            <li class="f-left">
               <div class="img-box"><a href="#"><img src="./images/d-images/gnb-smenu02.gif" alt="기업특판"></a></div>
             </li>
           </ul>
-          <ul class="f-right util">
-            <li>
+          <ul class="f-right util clearfix">
+            <li class="f-left">
               <div class="img-box"><a href="#"><img src="./images/d-images/util01.gif" alt="멤버십 로그인"></a></div>
             </li>
-            <li>
+            <li class="f-left">
               <div class="img-box"><a href="#"><img src="./images/d-images/util02.gif" alt="멤버십 가입"></a></div>
             </li>
-            <li>
+            <li class="f-left">
               <div class="img-box"><a href="#"><img src="./images/d-images/util03.gif" alt="고객센터"></a></div>
             </li>
-            <li>
-              <div class="img-box"><a href="#"><img src="./images/d-images/util04.gif" alt="English"></a></div>
+            <li class="f-left">
+              <div class="img-box"><a href="#"><img src="./images/d-images/util04.gif" alt="잉글리쉬"></a></div>
             </li>
           </ul>
         </div>
-        <div class="row">
-          
-        </div>
+        <nav class="nav">
+          <ul class="clearfix">
+            <li class="f-left">
+              <div class="img-box"><a href="#"><img src="./images/d-images/gnb-01.png" alt="메뉴"></a></div>
+              <p><a href="#">메뉴</a></p>
+            </li>
+            <li class="f-left">
+              <div class="img-box"><a href="#"><img src="./images/d-images/gnb-02.png" alt="할리스몰"></a></div>
+              <p><a href="#">할리스몰</a></p>
+            </li>
+            <li class="f-left">
+              <div class="img-box"><a href="#"><img src="./images/d-images/gnb-03.png" alt="멤버십"></a></div>
+              <p><a href="#">멤버십</a></p>
+            </li>
+            <li class="f-left">
+              <div class="img-box"><a href="#"><img src="./images/d-images/gnb-04.png" alt="이벤트 및 공지"></a></div>
+              <p><a href="#">이벤트 및 공지</a></p>
+            </li>
+            <li class="f-left">
+              <div class="img-box"><a href="#"><img src="./images/d-images/gnb-05.png" alt="매장"></a></div>
+              <p><a href="#">매장</a></p>
+            </li>
+            <li class="f-left">
+              <div class="img-box"><a href="#"><img src="./images/d-images/gnb-06.png" alt="할리스 소개"></a></div>
+              <p><a href="#">할리스 소개</a></p>
+            </li>
+          </ul>
+        </nav>
+        <div class="sub-nav">
+          <ul class="clearfix">
+            <li>
+              <ul>
+                <li><a href="#">COFFEE</a></li>
+                <li><a href="#">라떼 · 초콜릿 · 티</a></li>
+                <li><a href="#">할리치노 · 빙수</a></li>
+                <li><a href="#">스무디 · 주스</a></li>
+                <li><a href="#">스파클링</a></li>
+                <li><a href="#">푸드</a></li>
+                <li><a href="#">MD상품</a></li>
+                <li><a href="#">MD식품</a></li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                <li><a href="#">할리스콘</a></li>
+                <li><a href="#">할리스카드</a></li>
+                <li><a href="#">E-Store</a></li>
+                <li><a href="#">구매내역</a></li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                <li><a href="#">스마트오더</a></li>
+                <li><a href="#">멤버십 혜택</a></li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                <li><a href="#">Notice</a></li>
+                <li><a href="#">Event</a></li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                <li><a href="#">매장검색</a></li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                <li><a href="#">HOLLYS</a></li>
+                <li><a href="#">할리스 위치 및 연락처</a></li>
+                <li><a href="#">채용 안내</a></li>
+                <li><a href="#">가맹문의 및 절차</a></li>
+                <li><a href="#">B2B 사업 소개</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>        
       </div>
     </header>
     <section class="sec main-banner">
@@ -83,11 +286,11 @@
         <h2>메인 배너</h2>
       </div>
     </section>
-    <main class="main" main="main">
+    <main class="main" id="main">
       <div class="container">
         <h2>메인</h2>
         <div class="row fran-mall-store">
-          <h3>프랜차이즈, 할리스몰, 스토어</h3>
+          <h3>프랜차이즈, 할리스 몰, 스토어</h3>
           <article class="art franchise">
             <h4>프랜차이즈</h4>
           </article>
@@ -104,8 +307,8 @@
             <h4>할리스 멤버십</h4>
           </article>
           <article class="art gift-card">
-            <h4>기프트카드</h4>
-          </article>
+            <h4>기프트 카드</h4>
+          </article>          
         </div>
         <div class="row notice">
           <h3>게시판</h3>
@@ -114,12 +317,12 @@
           </article>
           <article class="art hollys-b2b-solution">
             <h4>솔루션 게시판</h4>
-          </article>
+          </article>          
           <article class="art news">
             <h4>뉴스 게시판</h4>
-          </article>
+          </article>          
           <article class="art etc">
-            <h4>창업안내 / 고객문의 게시판</h4>
+            <h4>창업안내/고객문의 게시판</h4>
           </article>
         </div>
         <div class="row line">
@@ -133,5 +336,4 @@
     </main>
   </section>
 </body>
-
 </html>
