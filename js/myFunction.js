@@ -19,22 +19,26 @@ function selectPage(){
 function sliderAuto(){
   let tlVal = 0;
   setInterval(function(){      
-    tlVal -= 25;
+    tlVal -= 20;
     if(tlVal<=-100){
       tlVal=0;
     }
     if(tlVal==0){
       resetActive($('.pagenation span'));
       setActive($('.pagenation span').eq(0));
-    }else if(tlVal==(-25)){
+    }else if(tlVal==(-20)){
       resetActive($('.pagenation span'));
       setActive($('.pagenation span').eq(1));
-    }else if(tlVal==(-50)){
+    }else if(tlVal==(-40)){
       resetActive($('.pagenation span'));
       setActive($('.pagenation span').eq(2));
-    }else if(tlVal==(-75)){
+    }else if(tlVal==(-60)){
       resetActive($('.pagenation span'));
       setActive($('.pagenation span').eq(3));
+    }
+    else if(tlVal==(-80)){
+      resetActive($('.pagenation span'));
+      setActive($('.pagenation span').eq(4));
     }
     $('.slider').css({
       transform:`translateX(${tlVal}%)`,
