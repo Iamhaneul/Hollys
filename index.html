@@ -340,7 +340,12 @@
   </style>
   <script>
     $(function(){
-      selectPage();
+      // selectPage();
+      let osString = navigator.userAgent;
+      if(osString.indexOf('Window')>=0){
+        // 모바일환경
+        location.href='https://Iamhanuel.github.io/hollys/m.index.html';
+      }
       fnCookie();      
       $('.nav li').mouseenter(function(){
         backColor($(this),'#ba000c');
