@@ -1,26 +1,40 @@
+let myObj = {
+  key01:fnWrap,
+  key02:fnSlider,
+  key03:fnCookie,
+  key04:sliderAuto,
+}
+
+function selectPage(){
+  let osString = navigator.userAgent;
+  if(osString.indexOf('Window')>=0){
+    // 윈도우환경
+    location.href='https://Iamhanuel.github.io/hollys/';
+  }else{
+    // 모바일환경
+    location.href='https://Iamhanuel.github.io/hollys/m.index.html';
+  }
+}
+
 function sliderAuto(){
   let tlVal = 0;
   setInterval(function(){      
-    tlVal -= 20;
+    tlVal -= 25;
     if(tlVal<=-100){
       tlVal=0;
     }
     if(tlVal==0){
       resetActive($('.pagenation span'));
       setActive($('.pagenation span').eq(0));
-    }else if(tlVal==(-20)){
+    }else if(tlVal==(-25)){
       resetActive($('.pagenation span'));
       setActive($('.pagenation span').eq(1));
-    }else if(tlVal==(-40)){
+    }else if(tlVal==(-50)){
       resetActive($('.pagenation span'));
       setActive($('.pagenation span').eq(2));
-    }else if(tlVal==(-60)){
+    }else if(tlVal==(-75)){
       resetActive($('.pagenation span'));
       setActive($('.pagenation span').eq(3));
-    }
-    else if(tlVal==(-80)){
-      resetActive($('.pagenation span'));
-      setActive($('.pagenation span').eq(4));
     }
     $('.slider').css({
       transform:`translateX(${tlVal}%)`,
@@ -54,14 +68,14 @@ function callBack01(){
 function fnLink(add){
   location.href=`${add}`;
 }
-// 폰트400
+// 폰드400
 function font400(el){
   el.css({
     fontWeight:'400',
   })
 }
 // 닫기함수
-function fnClose(el){
+function fnClose(el){      
   el.stop().hide();
 }
 // 쿠키함수
