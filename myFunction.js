@@ -5,6 +5,17 @@ let myObj = {
   key04:sliderAuto,
 }
 
+function selectPage(){
+  let osString = navigator.userAgent;
+  if(osString.indexOf('Window')>=0){
+    // 윈도우환경
+    location.href='https://Iamhanuel.github.io/hollys/';
+  }else{
+    // 모바일환경
+    location.href='https://Iamhanuel.github.io/hollys/m.index.html';
+  }
+}
+
 function sliderAuto(){
   let tlVal = 0;
   setInterval(function(){      
@@ -61,14 +72,14 @@ function callBack01(){
 function fnLink(add){
   location.href=`${add}`;
 }
-// 폰트400
+// 폰드400
 function font400(el){
   el.css({
     fontWeight:'400',
   })
 }
 // 닫기함수
-function fnClose(el){
+function fnClose(el){      
   el.stop().hide();
 }
 // 쿠키함수
