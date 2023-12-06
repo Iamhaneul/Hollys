@@ -5,16 +5,16 @@ let myObj = {
   key04:sliderAuto,
 }
 
-function selectPage(){
-  let osString = navigator.userAgent;
-  if(osString.indexOf('Window')>=0){
-    // 윈도우환경
-    location.href='https://Iamhanuel.github.io/hollys/';
-  }else{
-    // 모바일환경
-    location.href='https://Iamhanuel.github.io/hollys/m.index.html';
-  }
-}
+// function selectPage(){
+//   let osString = navigator.userAgent;
+//   if(osString.indexOf('Window')>=0){
+//     // 윈도우환경
+//     location.href='https://pam7461.github.io/hollys/index.html';
+//   }else{
+//     // 모바일환경
+//     location.href='https://pam7461.github.io/hollys/m.index.html';
+//   }
+// }
 
 function sliderAuto(){
   let tlVal = 0;
