@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- 설명 / 제작자 / 날짜 / 키워드 -->
   <!-- og -->
-  <!-- teitter card -->
+  <!-- twitter card -->
   <!-- favicon -->
-  <link rel="shortcut icon" href="./images/logo.gif" type="image/x-icon">
   <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/popup.css">  
   <title>할리스</title>
   <style>
     :root{
@@ -42,12 +42,10 @@
     #skip-menu a:focus{
       transform:translateY(0);
     }
-    /* WRAP */
     #wrap{
       overflow:hidden;
       position:relative;
     }
-    /* HEADER */
     .header{
       position:relative;
       z-index:10;
@@ -116,65 +114,6 @@
       color:var(--sub-color07);
       text-align:center;
     }
-    /* POPUP */
-    .popup{
-      display:none;      
-      position:fixed;
-      left:50%;
-      top:50%;
-      z-index:100;
-      transform:translate(-50%,-50%);
-      width:360px;
-      box-shadow:0 0 3px rgba(0,0,0,0.6);
-    }
-    .popup .container{
-      position:relative;
-    }
-    .popup h2{
-      display:none;
-    }
-    .popup .btn-container button{
-      width:50%;
-      border:none;
-      padding:16px;
-      background:transparent;
-      text-align:center;
-    }
-    .popup .btn-container button:first-child{
-      float:left;
-      background:var(--sub-color07);
-    }
-    .popup .btn-container button:last-child{
-      float:right;
-      font-weight:700;
-      background:var(--sub-color07);
-    }
-    .popup .container>button{
-      position:absolute;
-      right:20px;
-      top:20px;
-      width:16px;
-      height:16px;
-      border:none;
-      background:transparent;
-      font-size:0;
-    }
-    .popup .container>button::before,
-    .popup .container>button::after{
-      content:'';
-      display:block;
-      width:17px;
-      height:1px;
-      background:#000;
-      position:absolute;
-      left:50%;
-      top:50%;      
-      transform:translate(-50%,-50%) rotate(45deg);
-    }
-    .popup .container>button::after{
-      transform:translate(-50%,-50%) rotate(-45deg);
-    }
-    /* MAIN BANNER */
     .main-banner{
       position:relative;
       z-index:1;
@@ -182,7 +121,6 @@
     .main-banner h2,.q-nav h2,.banner h2{
       display:none;
     }
-    /* QUICK NAV */
     .q-nav{
       padding:20px 0;
     }
@@ -206,14 +144,14 @@
       width:30px;
       height:45px;
     }
-    /* BANNER */
+
     .banner li{
       margin-bottom:5px;
     }
     .banner h3,.banner h3+p{
       display:none;
     }
-    /* NOTICE */
+
     .notice{
       padding:20px 0;
     }
@@ -257,7 +195,6 @@
       width:20%;
       text-align:right;
     }
-    /* FOOTER */
     .footer .row:nth-child(1){
       border:1px solid var(--sub-color05);
       border-left:none;
@@ -288,6 +225,7 @@
     .footer .row:nth-child(1) div:last-child{
       float:right;
     }
+
     .footer .row:nth-child(2){
       padding:10px;
       background:var(--sub-color06);
@@ -297,13 +235,13 @@
       display:inline-block;
       padding:5px 20px;
     }
-    .footer .row:nth-child(3){
+    .footer .row:nth-child(3){      
       padding:10px 10px 80px 10px;
       background:var(--sub-color06);
       font-size:0.6em;
     }
   </style>
-  <!-- 추가 스타일 -->
+  <!-- 추가스타일 -->
   <style>
     .slider{
       position:relative;
@@ -339,6 +277,46 @@
       background:var(--main-color);
     }
   </style>
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/jquery.cookie.min.js"></script>
+  <script src="./js/myFunction.js"></script>
+  <script src="./js/popup.js"></script>
+  <script>  
+    $(document).ready(function(){
+      selectPage();
+      myObj.key01();
+      myObj.key02();
+      myObj.key03();
+      $('h1').click(function(){
+        let hrefVal = $(this).children('a').attr('href');      
+        fnLink(hrefVal);     
+      })
+      
+      $('.btn-nav').click(function(){
+        $('#nav').stop().slideToggle(300,callBack01);      
+      })
+      $('.main-nav').children('li').click(function(event){
+        event.preventDefault();
+        fnClose($('.sub-nav'));                 
+        $(this).children('.sub-nav').stop().slideDown();
+        $(this).children('a').css({
+          fontWeight:'700',
+        })
+      })
+      $(window).resize(function(){
+        fnSlider();
+      })
+      $('.pagenation span').click(function(){
+        resetActive($('.pagenation span'));
+        setActive($(this));
+        tlVal = $(this).text() * (-25);
+        $('.slider').css({
+          transform:`translateX(${tlVal}%)`,
+        });
+      })
+      myObj.key04();
+    })        
+  </script>
 </head>
 <body>
   <div id="skip-menu">
@@ -432,11 +410,10 @@
       <div class="container">
         <h2>이벤트 바로가기</h2>
         <div class="slider">
-          <div class="img-box"><a href="#"><img src="./images/img-main-banner01.jpg" alt="Joyful Party Together! 할리베어 윈터 케이크 출시!"></a></div>
-          <div class="img-box"><a href="#"><img src="./images/img-main-banner02.jpg" alt="Magical Winter Melody, 마법같은 홀리데이 음료 윈터 제주 레몬 애플티 출시!"></a></div>
-          <div class="img-box"><a href="#"><img src="./images/img-main-banner03.jpg" alt="Magical Winter Melody, 마법같은 홀리데이 음료 홀리데이 돌체 라떼 출시!"></a></div>
-          <div class="img-box"><a href="#"><img src="./images/img-main-banner04.jpg" alt="Have a Bread Day, 풍미 가득 베이커리 3종 출시!"></a></div>
-          <div class="img-box"><a href="#"><img src="./images/img-main-banner05.jpg" alt="Time for Bubble Tea, 말랑 쫀득 펄 가득 버블티 출시!"></a></div>
+          <div class="img-box"><a href="#"><img src="./images/img-main-banner01.jpg" alt="Magical Winter Melody, 레몬 에플티!"></a></div>
+          <div class="img-box"><a href="#"><img src="./images/img-main-banner02.jpg" alt="Magical Winter Melody, 겨울라떼!"></a></div>
+          <div class="img-box"><a href="#"><img src="./images/img-main-banner03.jpg" alt="Magical Winter Melody, 풍미가득 베이커리!"></a></div>
+          <div class="img-box"><a href="#"><img src="./images/img-main-banner04.jpg" alt="Magical Winter Melody, 말랑 쫀득 버블티!"></a></div>
         </div>
       </div>
     </section>
@@ -544,51 +521,5 @@
       </div>
     </footer>
   </section>
-
-  <script src="./js/jquery.min.js"></script>
-  <script src="./js/jquery.cookie.min.js"></script>
-  <script src="./js/myFunction.js"></script>
-  <script>
-    $(document).ready(function(){
-      myObj.key01();
-      myObj.key02();
-      myObj.key03();
-      $('h1').click(function(){
-        let hrefVal = $(this).children('a').attr('href');      
-        fnLink(hrefVal);
-        // location.href='./m.index.html';
-      })
-      $('#btn-chk02,#btn-close').click(function(){
-        fnClose($('#popup'));
-      });
-      $('#btn-chk01').click(function(){
-        $.cookie('popup','no',{path:'/',expires:1});
-        fnClose($('#popup'));
-      });
-      $('.btn-nav').click(function(){
-        $('#nav').stop().slideToggle(300,callBack01);      
-      })
-      $('.main-nav').children('li').click(function(event){
-        event.preventDefault();
-        fnClose($('.sub-nav'));                 
-        $(this).children('.sub-nav').stop().slideDown();
-        $(this).children('a').css({
-          fontWeight:'700',
-        })
-      })
-      $(window).resize(function(){
-        fnSlider();
-      })
-      $('.pagenation span').click(function(){
-        resetActive($('.pagenation span'));
-        setActive($(this));
-        tlVal = $(this).text() * (-25);
-        $('.slider').css({
-          transform:`translateX(${tlVal}%)`,
-        });
-      })
-      myObj.key04();
-    })
-  </script>
 </body>
 </html>
